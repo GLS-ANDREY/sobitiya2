@@ -3,6 +3,7 @@ import time
 import random
 
 pygame.init()
+pygame.time.set_timer(35000,10000)
 b = pygame.font.SysFont("arial", 30, True, True)
 e = pygame.display.set_mode([1000, 700])
 
@@ -47,8 +48,14 @@ while True:
             k = a.pos
             c = pygame.draw.circle(e, [loc, col, rgb], k, 3)
 
-        if a.type == pygame.MOUSEMOTION and a.buttons == (1,0,0):
+        if a.type == pygame.MOUSEMOTION and a.buttons[0] == 1:
             c2 = pygame.draw.circle(e, [loc, col, rgb], k, 10)
+
+        if a.type == pygame.MOUSEMOTION and a.buttons[1] == 1:
+            c2 = pygame.draw.circle(e, [loc, col, rgb], k, 15)
+
+        if a.type == pygame.MOUSEMOTION and a.buttons[2] == 1:
+            c2 = pygame.draw.circle(e, [loc, col, rgb], k, 20)
 
         if a.type == pygame.MOUSEBUTTONDOWN and a.button == 4:
             rrr = b.render("verx", True, [loc, col, rgb])
@@ -58,6 +65,9 @@ while True:
             rrr = b.render("vniz", True,
                            [random.randint(0, 250), random.randint(0, 250), random.randint(0, 250)])
             e.blit(rrr, [a.pos[0], a.pos[1]])
+
+        if a.type == 35000:
+            e.fill([0,0,0])
 
         if a.type == pygame.KEYDOWN:
             print(a.key)
